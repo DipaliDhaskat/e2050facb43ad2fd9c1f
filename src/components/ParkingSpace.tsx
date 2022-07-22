@@ -152,7 +152,7 @@ const ParkingSpace = () => {
     //rendring data
     return <div>
         <h1 data-testid="park-heading">Parking Space</h1>
-        <Button variant="contained" data-testid="reg-btn" onClick={handleRegistration}>Car registration</Button>
+        <Button variant="contained" id="parking-drawing-add-car" data-testid="reg-btn" onClick={handleRegistration} >Car registration</Button>
 
         <Box sx={{ width: '100%', m: 2 }}>
             <Grid container spacing={3} >
@@ -165,13 +165,13 @@ const ParkingSpace = () => {
                                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                                     Car Parking
                                 </Typography>
-                                <Typography id="parking-drawing-registered" variant="h5" component="div" color="blue" sx={{ my: 1 }}>
+                                <Typography id={`parking-drawing-space-number-${ele}`} variant="h5" component="div" color="blue" sx={{ my: 1 }}>
                                     Parking No :  {ele}
                                 </Typography>
                                 {
                                     allocateParkNo.length > 0 && allocateParkNo.map((spAlocate: any, index: number) => {
                                         if (Number(spAlocate.randomNo) === Number(ele)) {
-                                            return <Typography variant="h6" sx={{ my: 2 }} color="green" key={ele} >
+                                            return <Typography variant="h6" sx={{ my: 2 }} id={`parking-drawing-registered-${ele}`} color="green" key={ele} >
                                                 {`Allocated`}<br />
                                                 {`Car No : ${spAlocate?.carNum} `}<br />
                                                 <Button id="deregister-time-spent" variant="contained" size="small" data-testid="ex-btn" onClick={() => handleExit(ele)}>Exit Car</Button>
@@ -199,13 +199,13 @@ const ParkingSpace = () => {
                     Car Registration
                 </Typography>
                 <Typography variant="h6" component="div" sx={{ mt: 2 }}>
-                    Car Number  <TextField id="outlined-basic" variant="outlined" value={carNo} onChange={handleCarNo} />
+                    Car Number  <TextField variant="outlined" id="parking-drawing-registration-input" value={carNo} onChange={handleCarNo} />
                 </Typography>
-                <Typography variant="h6" component="div" sx={{ mt: 2 }}>
+                <Typography id="deregister-time-spent" variant="h6" component="div" sx={{ mt: 2 }}>
                     Parking Time : {parkTime}
                 </Typography>
                 <Typography variant="h5" component="div" sx={{ mt: 2 }}>
-                    <Button id="deregister-car-registration" variant="contained" onClick={registerCar}> Register</Button>
+                    <Button id="parking-drawing-add-car-button" variant="contained" onClick={registerCar}> Register Car</Button>
                 </Typography>
             </Box>
         </Modal>
